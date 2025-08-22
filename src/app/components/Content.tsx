@@ -96,21 +96,8 @@ export default function Content() {
               </div>
             )
           } else if (info.type === 'Video') {
-            return (
-              <div key={info.url}>
-                <video
-                  className="w-full h-[400px] rounded-b"
-                  controls
-                  playsInline={true}
-                  preload="metadata"
-                  muted
-                  loop={true}
-                >
-                  <source src={info.url} type="video/mp4" />
-                </video>
-                <Save href={info.url} />
-              </div>
-            )
+           window.open(info.url, "_blank", "noopener,noreferrer");
+  return null;
           }
         })}
       </div>
