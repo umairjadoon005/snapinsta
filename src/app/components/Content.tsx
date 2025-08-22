@@ -2,7 +2,7 @@
 import IgForm from '@/app/components/IgForm'
 import { useState, useEffect } from 'react'
 import { ResourceInfo } from '@/types'
-import { toCorsUrl, downloadVideo } from '@/lib/utils'
+import { toCorsUrl } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { ExternalLink, Loader2 } from 'lucide-react'
 import { useToast } from '@/hooks/use-toast'
