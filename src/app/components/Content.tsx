@@ -7,37 +7,37 @@ import { Button } from '@/components/ui/button'
 import { ExternalLink, Loader2 } from 'lucide-react'
 import { useToast } from '@/hooks/use-toast'
 
-function Save(props: { href: string }) {
-  const [isLoading, setIsLoading] = useState(false)
-  const { toast } = useToast()
-  const download = async () => {
-    try {
-      setIsLoading(true)
-      await downloadVideo(props.href, `instagram-${new Date().toLocaleString('en-US')}`)
-    } catch (error) {
-      console.error(error)
-      toast({
-        title: 'Error',
-        description: 'An Error occurred while downloading',
-        duration: 1500
-      })
-    } finally { 
-      setIsLoading(false)
-    }
-  }
-  return (
-    <Button
-      variant="outline"
-      className='mt-2'
-      size="sm"
-      onClick={download}
-      disabled={isLoading}
-    >
-      {isLoading && <Loader2 className="animate-spin" />}
-      Click To Save
-    </Button>
-  )
-}
+// function Save(props: { href: string }) {
+//   const [isLoading, setIsLoading] = useState(false)
+//   const { toast } = useToast()
+//   const download = async () => {
+//     try {
+//       setIsLoading(true)
+//       await downloadVideo(props.href, `instagram-${new Date().toLocaleString('en-US')}`)
+//     } catch (error) {
+//       console.error(error)
+//       toast({
+//         title: 'Error',
+//         description: 'An Error occurred while downloading',
+//         duration: 1500
+//       })
+//     } finally { 
+//       setIsLoading(false)
+//     }
+//   }
+//   return (
+//     <Button
+//       variant="outline"
+//       className='mt-2'
+//       size="sm"
+//       onClick={download}
+//       disabled={isLoading}
+//     >
+//       {isLoading && <Loader2 className="animate-spin" />}
+//       Click To Save
+//     </Button>
+//   )
+// }
 
 export default function Content() {
   useEffect(() => {
