@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { ResourceInfo } from '@/types'
 import { toCorsUrl } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
-import { ExternalLink } from 'lucide-react'
+// import { ExternalLink } from 'lucide-react'
 import { useToast } from '@/hooks/use-toast'
 
 // function Save(props: { href: string }) {
@@ -50,6 +50,9 @@ export default function Content() {
     }
   })
 
+
+
+
   const [resourceInfo, setResourceInfo] = useState<ResourceInfo[]>([])
   const { toast } = useToast()
 
@@ -80,7 +83,7 @@ export default function Content() {
             size="icon"
             onClick={() => copyLinkToClipboard()}
           >
-            <ExternalLink />
+            {/* <ExternalLink /> */}
           </Button>
         )}
         {resourceInfo.map((info, i) => {
@@ -93,6 +96,21 @@ export default function Content() {
                   className="object-contain w-full h-[400px]"
                   alt=""
                 />
+<Button
+  variant="default"
+  className="ml-auto mt-4"
+  onClick={() => {
+    const link = document.createElement("a");
+    link.href = info.url; // full image URL
+    link.setAttribute("download", "image.jpg"); // force download name
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }}
+>
+  Download
+</Button>
+
               </div>
             )
           } else if (info.type === 'Video') {
