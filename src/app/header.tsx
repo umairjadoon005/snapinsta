@@ -16,7 +16,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { LogoText } from "@/components/logo";
 import { LocaleDropdown } from "@/features/i18n/locale-dropdown";
-import { ThemeToggleButton } from "@/features/theme/theme-toggle-button";
+// import { ThemeToggleButton } from "@/features/theme/theme-toggle-button";
 
 import { Menu } from "lucide-react";
 
@@ -67,7 +67,7 @@ export function Header() {
 
           <div className="border-border flex items-center gap-2 border-l pl-2">
             <LocaleDropdown />
-            <ThemeToggleButton />
+            {/* <ThemeToggleButton /> */}
           </div>
         </nav>
 
@@ -123,7 +123,7 @@ export function Header() {
                     <span className="text-sm font-medium">
                       {t("themeLabel")}
                     </span>
-                    <ThemeToggleButton variant="outline" />
+                    {/* <ThemeToggleButton variant="outline" /> */}
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-medium">
