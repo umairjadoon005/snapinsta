@@ -1,4 +1,3 @@
-import Content from '@/app/components/Content'
 import { Toaster } from '@/components/ui/toaster'
 import { Suspense } from 'react'
 import { Header } from './header'
