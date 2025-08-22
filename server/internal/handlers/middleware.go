@@ -8,7 +8,7 @@ import (
 func CORSMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		// 允许的请求来源
-		w.Header().Set("Access-Control-Allow-Origin", "localhost:3000,snapinsta.ink")
+		w.Header().Set("Access-Control-Allow-Origin", "localhost:3000,insta-j.vercel.app")
 		// 允许的请求方法
 		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
 		// 允许的请求头
