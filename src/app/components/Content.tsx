@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { ResourceInfo } from '@/types'
 import { toCorsUrl } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
-import { ExternalLink, Loader2 } from 'lucide-react'
+import { ExternalLink } from 'lucide-react'
 import { useToast } from '@/hooks/use-toast'
 
 // function Save(props: { href: string }) {
