@@ -99,13 +99,46 @@ export default function Content() {
 <Button
   variant="default"
   className="ml-auto mt-4"
-  onClick={() => {
-    const link = document.createElement("a");
-    link.href = info.url; // full image URL
-    link.setAttribute("download", "image.jpg"); // force download name
+  onClick={async() => {
+try {
+    // 1. Fetch the image data from the provided URL
+    // The "cors" mode is used to allow cross-origin requests
+    const response = await fetch(info.url, { mode: 'cors' });
+
+    // 2. Check if the request was successful
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    // 3. Convert the response to a Blob
+    // A Blob is a file-like object of immutable raw data
+    const imageBlob = await response.blob();
+
+    // 4. Create a temporary URL for the Blob
+    // This URL is local to the browser and doesn't trigger CORS
+    const imageObjectURL = URL.createObjectURL(imageBlob);
+
+    // 5. Create a temporary <a> element for the download
+    const link = document.createElement('a');
+    link.href = imageObjectURL;
+
+    // Set the download attribute with the desired file name
+    link.download = "fileName.jpg";
+
+    // 6. Append the link to the document body, trigger a click, and then remove it
+    // This action simulates a user clicking a download link
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+
+    // 7. Revoke the temporary URL to free up memory
+    // It's good practice to clean up after the download
+    URL.revokeObjectURL(imageObjectURL);
+
+    console.log('Image downloaded successfully!');
+  } catch (error) {
+    console.error('Error downloading the image:', error);
+  }
   }}
 >
   Download
