@@ -138,7 +138,7 @@ export default class Ig {
   }
 
   private parseShortcodeFromUrl(url: string): string {
-    const matchShortcodeReg = /\/(?:p|reel|tv)\/([a-zA-Z0-9_\-]+)/
+    const matchShortcodeReg = /\/(?:p|reels|reel|tv)\/([a-zA-Z0-9_\-]+)/
     const matcher = url.match(matchShortcodeReg)
     if (!matcher) {
       throw new Error('No Shortcode Found in Url!')

@@ -57,7 +57,7 @@ export function isValidIgUrl(url: any) {
   if (typeof url !== 'string') {
     return false
   }
-  return /^(https?:\/\/)?(www\.)?instagram\.com\/(p|reel|tv)\/[a-zA-Z0-9_\-]+(\/(\?[^#]*)?)?(#.*)?$/.test(
+  return /^(https?:\/\/)?(www\.)?instagram\.com\/(p|reels|reel|tv)\/[a-zA-Z0-9_\-]+(\/(\?[^#]*)?)?(#.*)?$/.test(
     url
   )
 }
