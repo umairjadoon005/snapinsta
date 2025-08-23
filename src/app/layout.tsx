@@ -32,7 +32,7 @@ export default async function RootLayout({
     <html lang={locale} className="scroll-smooth" suppressHydrationWarning>
       <Head>
  <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover'/>
-
+<link rel="icon" href="/icon.png" />
 </Head>
       <body className={cn("antialiased", geistSans.className)}>
         <LocaleProvider locale={locale} messages={messages}>

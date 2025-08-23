@@ -6,6 +6,7 @@ import { toCorsUrl } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 // import { ExternalLink } from 'lucide-react'
 import { useToast } from '@/hooks/use-toast'
+import { useIsMobile } from '@/hooks/use-is-mobile'
 
 // function Save(props: { href: string }) {
 //   const [isLoading, setIsLoading] = useState(false)
@@ -40,6 +41,7 @@ import { useToast } from '@/hooks/use-toast'
 // }
 
 export default function Content() {
+            const isMobile = useIsMobile(); // ✅ call hook here, top-level
   useEffect(() => {
     if('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js').then(registration => {
@@ -50,7 +52,24 @@ export default function Content() {
     }
   })
 
+// const downloadImage = async (url) => {
+//   try {
+//     const response = await fetch(url, { mode: "cors" });
+//     const blob = await response.blob();
+//     const blobUrl = URL.createObjectURL(blob);
 
+//     const link = document.createElement("a");
+//     link.href = blobUrl;
+//     link.download = url.split("/").pop() || "image.jpg"; // use last part of URL as filename
+//     document.body.appendChild(link);
+//     link.click();
+//     document.body.removeChild(link);
+
+//     URL.revokeObjectURL(blobUrl);
+//   } catch (error) {
+//     console.error("Download failed", error);
+//   }
+// };
 
 
   const [resourceInfo, setResourceInfo] = useState<ResourceInfo[]>([])
@@ -96,53 +115,7 @@ export default function Content() {
                   className="object-contain w-full h-[400px]"
                   alt=""
                 />
-<Button
-  variant="default"
-  className="ml-auto mt-4"
-  onClick={async() => {
-try {
-    // 1. Fetch the image data from the provided URL
-    // The "cors" mode is used to allow cross-origin requests
-    const response = await fetch(info.url, { mode: 'cors' });
-
-    // 2. Check if the request was successful
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    // 3. Convert the response to a Blob
-    // A Blob is a file-like object of immutable raw data
-    const imageBlob = await response.blob();
-
-    // 4. Create a temporary URL for the Blob
-    // This URL is local to the browser and doesn't trigger CORS
-    const imageObjectURL = URL.createObjectURL(imageBlob);
-
-    // 5. Create a temporary <a> element for the download
-    const link = document.createElement('a');
-    link.href = imageObjectURL;
-
-    // Set the download attribute with the desired file name
-    link.download = "fileName.jpg";
-
-    // 6. Append the link to the document body, trigger a click, and then remove it
-    // This action simulates a user clicking a download link
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-
-    // 7. Revoke the temporary URL to free up memory
-    // It's good practice to clean up after the download
-    URL.revokeObjectURL(imageObjectURL);
-
-    console.log('Image downloaded successfully!');
-  } catch (error) {
-    console.error('Error downloading the image:', error);
-  }
-  }}
->
-  Download
-</Button>
+                {isMobile ? <p className="text-white mb-4">Press and hold on image to save in your gallery</p> : <p className="text-white mb-4">Right click on image to save in your PC</p>}
 
               </div>
             )
